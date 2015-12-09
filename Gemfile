@@ -32,7 +32,8 @@ gem 'pocket-ruby'
 
 gem 'nokogiri'
 gem 'pry'
-gem 'rest-open-uri'
+# gem 'rest-open-uri'
+
 # gem 'rest-open-uri', '~> 1.0'
 # gem 'nokogiri', '~> 1.6', '>= 1.6.7'
 

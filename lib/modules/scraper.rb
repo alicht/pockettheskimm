@@ -10,9 +10,7 @@ module Scraper
     doc = Nokogiri::HTML(open("http://www.theskimm.com/recent"))
     h = {}
     doc.xpath('//a[@href]').each do |link|   
-    h[link.text.strip] = link['href']
-  #   h << if "http://skimmth.is/" =~ link  
-  # end
+    h[link.text.strip] = link['href'] if link['href'] =~ /http:\/\/skimmth.is\//
   end
   puts h
   end
