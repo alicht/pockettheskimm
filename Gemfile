@@ -30,6 +30,13 @@ gem 'pocket-ruby'
 # Use Unicorn as the app server
 # gem 'unicorn'
 
+gem 'nokogiri'
+gem 'pry'
+gem 'rest-open-uri'
+# gem 'rest-open-uri', '~> 1.0'
+# gem 'nokogiri', '~> 1.6', '>= 1.6.7'
+
+
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
