@@ -32,7 +32,10 @@ gem 'pocket-ruby'
 
 gem 'nokogiri'
 gem 'pry'
-# gem 'rest-open-uri'
+
+gem "therubyracer"
+gem "less-rails" #Sprockets (what Rails 3.1 uses for its asset pipeline) supports LESS
+gem 'twitter-bootstrap-rails', :git => 'git://github.com/seyhunak/twitter-bootstrap-rails.git'
 
 # gem 'rest-open-uri', '~> 1.0'
 # gem 'nokogiri', '~> 1.6', '>= 1.6.7'

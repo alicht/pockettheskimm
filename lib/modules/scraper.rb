@@ -1,8 +1,4 @@
-# require 'nokogiri'
-# require 'open-uri'
-# require 'pry'
-
-
+require 'open-uri'
 
 module Scraper
   
@@ -10,11 +6,13 @@ module Scraper
     doc = Nokogiri::HTML(open("http://www.theskimm.com/recent"))
     h = {}
     doc.xpath('//a[@href]').each do |link|   
-    h[link.text.strip] = link['href'] if link['href'] =~ /http:\/\/skimmth.is\//
+     h[link.text.strip] = link['href'] if link['href'] =~ /http:\/\/skimmth.is\//
+    end
+    puts h
   end
-  puts h
-  end
-  binding.pry
-end
 
-Scraper.new.get_page
+  def get_urls
+    get_page.values
+  end
+  # binding.pry
+end

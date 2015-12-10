@@ -5,12 +5,17 @@
   <title>Document</title>
 </head>
 <body>
-  <h1>Pocket Today's theSkimm!</h1>
-    <h2>click this button to Pocket all the articles on today's Skimm</h2>
-    <button type="button">Pocket today's Skimm</button>
-    <%= link_to 'connect', '/auth/pocket/connect'%>
+<div class="center-block text-center"> 
+  <h1>Pocket Today's Skimm!</h1>
+      <h1><%= link_to "click this button to Pocket all the articles in today's Skimm", add_path %></h1>
+    <h3>"Note: a new skimm becomes available every morning at 6am EST"</h3>
+    <h2><a href="http://www.theskimm.com/recent" target="_blank">Today's Skimm</a></h2>
+    <img src="/assets/pocketskimm.png">
+  </div>
+  
+
+
 </body>
 </html>
 
-<!-- <h1>Welcome#index</h1>
-<p>Find me in app/views/welcome/index.html.erb</p> -->
+

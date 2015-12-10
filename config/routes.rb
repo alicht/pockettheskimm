@@ -10,6 +10,8 @@ Rails.application.routes.draw do
    get 'auth/pocket/connect', to: 'welcome#connect'
    get 'auth/pocket/callback', to: 'welcome#callback'
    get 'add', to: 'welcome#add'
+   get 'thanks', to: 'welcome#thanks'
+   get 'signout', to: 'welcome#destroy', as: 'signout'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
