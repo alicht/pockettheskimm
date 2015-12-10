@@ -29,6 +29,7 @@ gem 'figaro'
 gem 'pocket-ruby'
 # Use Unicorn as the app server
 # gem 'unicorn'
+gem 'rails_12factor', group: :production
 
 gem 'nokogiri'
 gem 'pry'
