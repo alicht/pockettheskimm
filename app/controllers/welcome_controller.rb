@@ -4,8 +4,8 @@ class WelcomeController < ApplicationController
 
   def connect
     puts "OAUTH CONNECT"
-    session[:code] = Pocket.get_code(:redirect_uri => 'https://pockettheskimm.herokuapp.com/auth/pocket/callback')
-    new_url = Pocket.authorize_url(:code => session[:code], :redirect_uri => 'https://pockettheskimm.herokuapp.com/auth/pocket/callback')
+    session[:code] = Pocket.get_code(:redirect_uri => 'http://www.pockettheskimm.com/auth/pocket/callback')
+    new_url = Pocket.authorize_url(:code => session[:code], :redirect_uri => 'http://www.pockettheskimm.com/auth/pocket/callback')
     puts "new_url: #{new_url}"
     puts "session: #{session}"
     redirect_to new_url
@@ -15,7 +15,7 @@ class WelcomeController < ApplicationController
     puts "OAUTH CALLBACK"
     puts "request.url: #{request.url}"
     puts "request.body: #{request.body.read}"
-    result = Pocket.get_result(session[:code], :redirect_uri => 'https://pockettheskimm.herokuapp.com/auth/pocket/callback')
+    result = Pocket.get_result(session[:code], :redirect_uri => 'https://www.pockettheskimm.com/auth/pocket/callback')
     session[:access_token] = result['access_token']
     puts result['access_token']
     puts result['username'] 
@@ -34,8 +34,7 @@ class WelcomeController < ApplicationController
       client.modify [{action: "tags_add", item_id: info["item"]["item_id"], tags: "pockettheSkimm", time: Time.now.to_i}]
     end
     redirect_to thanks_path
-    # info = client.add :url => 'http://getpocket.com'
-    # puts "<pre>#{info}</pre>"
+
   end
 
   def thanks
