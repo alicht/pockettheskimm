@@ -4,8 +4,11 @@ class WelcomeController < ApplicationController
 
   def connect
     puts "OAUTH CONNECT"
-    session[:code] = Pocket.get_code(:redirect_uri => 'http://www.pockettheskimm.com/auth/pocket/callback')
-    new_url = Pocket.authorize_url(:code => session[:code], :redirect_uri => 'http://www.pockettheskimm.com/auth/pocket/callback')
+    callback_url = Rails.env.development? ? "http://localhost:3000/auth/pocket/callback" :
+    'https://www.pockettheskimm.com/auth/pocket/callback'
+
+    session[:code] = Pocket.get_code(:redirect_uri => callback_url)
+    new_url = Pocket.authorize_url(:code => session[:code], :redirect_uri => callback_url)
     puts "new_url: #{new_url}"
     puts "session: #{session}"
     redirect_to new_url
@@ -15,7 +18,11 @@ class WelcomeController < ApplicationController
     puts "OAUTH CALLBACK"
     puts "request.url: #{request.url}"
     puts "request.body: #{request.body.read}"
-    result = Pocket.get_result(session[:code], :redirect_uri => 'https://www.pockettheskimm.com/auth/pocket/callback')
+
+    callback_url = Rails.env.development? ? "http://localhost:3000/auth/pocket/callback" :
+    'https://www.pockettheskimm.com/auth/pocket/callback'
+
+    result = Pocket.get_result(session[:code], :redirect_uri => callback_url)
     session[:access_token] = result['access_token']
     puts result['access_token']
     puts result['username'] 
