@@ -2,9 +2,9 @@ class WelcomeController < ApplicationController
   def index; end
 
   def add
-    client = Pocket.client(:access_token => session[:access_token])
+    client = Pocket.client(access_token: session[:access_token])
 
-    Business::Scraper.get_urls.each do |url|
+    Business::Scraper.new.get_urls.each do |url|
       info = client.add url: url
       client.modify [{action: "tags_add", item_id: info["item"]["item_id"], tags: "pockettheSkimm", time: Time.now.to_i}]
     end
