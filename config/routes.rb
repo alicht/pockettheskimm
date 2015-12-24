@@ -9,7 +9,7 @@ Rails.application.routes.draw do
 
   resource :auth, only: [:show, :create]
 
-  get 'auth/pocket/callback', to: 'welcome#callback'
+  get 'auth/pocket/callback', to: 'auth#create'
   get 'add', to: 'welcome#add'
   get 'thanks', to: 'welcome#thanks'
   get 'signout', to: 'welcome#destroy', as: 'signout'

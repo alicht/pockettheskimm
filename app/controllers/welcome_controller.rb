@@ -8,8 +8,8 @@ class WelcomeController < ApplicationController
       info = client.add url: url
       client.modify [{action: "tags_add", item_id: info["item"]["item_id"], tags: "pockettheSkimm", time: Time.now.to_i}]
     end
-    render :thanks
 
+    render :thanks
   end
 
   def thanks; end
@@ -40,16 +40,6 @@ end
 #    "excerpt"=>
 #     "Miss the show? You can still watch it here, or check out some highlights via this playlist:  Want to tune into see the Victoria's Secret Fashion Show tonight? We don't blame you -- what's not to love about dozens of stunning models, star musicians and a $2 million bra?",
 #    "word_count"=>"173"
-
-
-
-
-
-
-
-
-
-
 
 # get "/oauth/connect" do
 #   puts "OAUTH CONNECT"
