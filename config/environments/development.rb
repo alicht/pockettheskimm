@@ -38,4 +38,6 @@ Rails.application.configure do
 
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
+
+  AUTH_REDIRECT_URI = "http://localhost:3000/auth/pocket/callback"
 end

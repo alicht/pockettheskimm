@@ -13,3 +13,7 @@
  *= require_tree .
  *= require_self
  */
+
+.by-alicht{
+  text-align: center;
+}
