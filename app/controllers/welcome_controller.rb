@@ -1,56 +1,22 @@
 class WelcomeController < ApplicationController
-  def index
-  end
+  def index; end
 
-  def connect
-    puts "OAUTH CONNECT"
-    callback_url = Rails.env.development? ? "http://localhost:3000/auth/pocket/callback" :
-    'https://www.pockettheskimm.com/auth/pocket/callback'
+  def add
+    client = Pocket.client(access_token: session[:access_token])
 
-    session[:code] = Pocket.get_code(:redirect_uri => callback_url)
-    new_url = Pocket.authorize_url(:code => session[:code], :redirect_uri => callback_url)
-    puts "new_url: #{new_url}"
-    puts "session: #{session}"
-    redirect_to new_url
-  end
-
-  def callback
-    puts "OAUTH CALLBACK"
-    puts "request.url: #{request.url}"
-    puts "request.body: #{request.body.read}"
-
-    callback_url = Rails.env.development? ? "http://localhost:3000/auth/pocket/callback" :
-    'https://www.pockettheskimm.com/auth/pocket/callback'
-
-    result = Pocket.get_result(session[:code], :redirect_uri => callback_url)
-    session[:access_token] = result['access_token']
-    puts result['access_token']
-    puts result['username'] 
-    # Alternative method to get the access token directly
-    #session[:access_token] = Pocket.get_access_token(session[:code])
-    puts session[:access_token]
-    puts "session: #{session}"
-    redirect_to root_path
-  end
-
-  def add 
-    client = Pocket.client(:access_token => session[:access_token])
-
-    Business::Scraper.get_urls.each do |url|
+    Business::Scraper.new.get_urls.each do |url|
       info = client.add url: url
       client.modify [{action: "tags_add", item_id: info["item"]["item_id"], tags: "pockettheSkimm", time: Time.now.to_i}]
     end
-    redirect_to thanks_path
 
+    render :thanks
   end
 
-  def thanks
-     
-  end
+  def thanks; end
 
   def destroy
     session[:access_token] = nil
-    redirect_to root_path
+    render :index
   end
 
 end
@@ -75,16 +41,6 @@ end
 #     "Miss the show? You can still watch it here, or check out some highlights via this playlist:  Want to tune into see the Victoria's Secret Fashion Show tonight? We don't blame you -- what's not to love about dozens of stunning models, star musicians and a $2 million bra?",
 #    "word_count"=>"173"
 
-
-
-
-
-
-
-
-
-
-
 # get "/oauth/connect" do
 #   puts "OAUTH CONNECT"
 #   session[:code] = Pocket.get_code(:redirect_uri => CALLBACK_URL)
@@ -101,7 +57,7 @@ end
 #   result = Pocket.get_result(session[:code], :redirect_uri => CALLBACK_URL)
 #   session[:access_token] = result['access_token']
 #   puts result['access_token']
-#   puts result['username'] 
+#   puts result['username']
 #   # Alternative method to get the access token directly
 #   #session[:access_token] = Pocket.get_access_token(session[:code])
 #   puts session[:access_token]

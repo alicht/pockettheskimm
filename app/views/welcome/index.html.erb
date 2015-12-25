@@ -36,12 +36,12 @@
 </head>
 
 <body>
-<div class="center-block text-center"> 
+<div class="center-block text-center">
   <h1>Welcome to Pocket theSkimm!</h1>
   <br>
-      <h2>Step 1: <%= link_to 'Sign in with Pocket', '/auth/pocket/connect'%></h2>
+      <h2>Step 1: <%= link_to 'Sign in with Pocket', auth_path %></h2>
       <h2>Step 2: <%= link_to "click here to Pocket all of the articles in today's Skimm", add_path, id: "skimm" %></h2>
-      
+
     <h4>* Note: a new Skimm becomes available every morning at 6am EST *</h4>
     <!-- <h2><a href="http://www.theskimm.com/recent" target="_blank">Today's Skimm</a></h2> -->
 
@@ -49,7 +49,7 @@
     <!-- <img src="/assets/pocketskimm.png"> -->
     <%= image_tag "pocketskimm.png" %>
   </div>
-  
+
 
 <!%= image_tag "/assets/pocketskimm.png" %>
 </body>

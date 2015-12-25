@@ -20,3 +20,10 @@
 /config/application.yml
 /vendor/
 /public/
+
+# ruby version and gemset
+.ruby-version
+.ruby-gemset
+
+# Vim swap files
+*.sw*

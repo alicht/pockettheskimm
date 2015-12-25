@@ -1,21 +1,19 @@
-require 'nokogiri'
-require 'open-uri'
-
 module Business
   class Scraper
-    def self.get_page
-      doc = Nokogiri::HTML(open("http://www.theskimm.com/recent"))
-      h = {}
-      doc.xpath('//a[@href]').each do |link|   
-       h[link.text.strip] = link['href'] if link['href'] =~ /http:\/\/skimmth.is\//
-      end
-      puts h
 
-      h
+    RECENT_URL = "http://www.theskimm.com/recent"
+    LINK_REGEX = /http:\/\/skimmth.is\//
+
+    def initialize
+      @page = Nokogiri::HTML(open(RECENT_URL))
     end
 
-    def self.get_urls
-      self.get_page.values
+    def get_urls
+      links_hash = {}
+      @page.xpath("//a[@href]").each do |link|
+        links_hash[link.text.strip] = link["href"] if link["href"] =~ LINK_REGEX
+      end
+      links_hash.values
     end
   end
 end
