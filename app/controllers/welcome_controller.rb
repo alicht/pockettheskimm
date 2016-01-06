@@ -1,4 +1,6 @@
 class WelcomeController < ApplicationController
+  before_action :require_authenticate, only: :add
+
   def index
   end
 

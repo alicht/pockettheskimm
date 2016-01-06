@@ -36,6 +36,11 @@
 </head>
 
 <body>
+      <% if notice.present? %>
+        <div class="alert alert-info">
+        <div class="text-center"><%= notice %></div>
+          <% end %>
+        </div>
 <div class="center-block text-center"> 
   <h1>Welcome to Pocket theSkimm!</h1>
   <br>
